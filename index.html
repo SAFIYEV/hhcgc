@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Эмоциональное зеркало</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 30px 15px;
+      background: #f0f2f5;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+      font-size: 24px;
+      color: #333;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .emotion-button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      background: #ffffff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: background 0.3s;
+    }
+
+    .emotion-button:hover {
+      background: #e0e0e0;
+    }
+
+    #mirror {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      padding: 20px;
+      transition: all 0.5s ease;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+      background: #ccc;
+    }
+
+    /* Эмоции — стили для зеркала */
+    .joy {
+      background: radial-gradient(circle, #ffd700, #ffa500);
+    }
+
+    .calm {
+      background: linear-gradient(135deg, #a3d5ff, #59c1e2);
+    }
+
+    .tired {
+      background: linear-gradient(to bottom, #888, #444);
+    }
+
+    .anxious {
+      background: repeating-linear-gradient(
+        45deg,
+        #ff6f61,
+        #ff6f61 10px,
+        #b33939 10px,
+        #b33939 20px
+      );
+    }
+
+    .angry {
+      background: linear-gradient(to right, #ff0000, #8b0000);
+    }
+
+    @media (max-width: 480px) {
+      #mirror {
+        width: 180px;
+        height: 180px;
+        font-size: 16px;
+        padding: 15px;
+      }
+
+      .emotion-button {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h2>🪞 Эмоциональное зеркало</h2>
+  <div class="buttons">
+    <button class="emotion-button" data-emotion="joy">😊 Радость</button>
+    <button class="emotion-button" data-emotion="calm">🌿 Спокойствие</button>
+    <button class="emotion-button" data-emotion="tired">😴 Усталость</button>
+    <button class="emotion-button" data-emotion="anxious">😰 Тревога</button>
+    <button class="emotion-button" data-emotion="angry">😡 Злость</button>
+  </div>
+
+  <div id="mirror">Выбери свою эмоцию</div>
+
+  <script>
+    const mirror = document.getElementById("mirror");
+    const messages = {
+      joy: "Ты сияешь изнутри ☀️",
+      calm: "Внутренний покой — сила 🌊",
+      tired: "Отдохни, ты заслужил 😌",
+      anxious: "Сделай вдох... всё будет хорошо 🌬️",
+      angry: "Пусть ярость станет топливом 🔥"
+    };
+
+    document.querySelectorAll(".emotion-button").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const emotion = btn.dataset.emotion;
+        mirror.className = ""; // сбрасываем предыдущий стиль
+        mirror.classList.add(emotion);
+        mirror.textContent = messages[emotion];
+      });
+    });
+  </script>
+</body>
+</html>
